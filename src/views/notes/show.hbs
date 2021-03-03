@@ -1,0 +1,230 @@
+<script>
+            var dev = [];
+            
+        </script>
+         {{#each devices}}
+        <script>
+            var dia = new Date('{{date}}');
+            dev.push({
+            date: dia,
+            TDS: {{TDS}},
+            PH: {{PH}},
+            EC: {{EC}},
+            TB: {{TB}}
+        });
+        console.log(dev);
+        </script>
+
+     {{/each}}
+     <div class="row " >
+      
+        <div class="jumbotron container col-10">
+          <p class="lead">TDS</p>
+        <div class="btn-group" role="group" aria-label="Basic example" >
+  <button autofocus="autofocus" type="button" class="btn btn-primary" onclick="showTDS()" >TDS</button>
+  <button type="button" class="btn btn-primary" onclick="showPH()" >PH</button>
+  <button type="button" class="btn btn-primary" onclick="showTB()" >TB</button>
+  <button type="button" class="btn btn-primary" onclick="showEC()">EC</button>
+</div>
+<div class="jumbotron col-md" id="chartTDS"></div>
+      </div>
+      
+          
+
+</div>
+    
+
+    <!-- Styles -->
+<style>
+  
+#chartTDS {
+  width: 100%;
+  height: 500px;
+  background-color: aliceblue;
+}
+
+#chartPH {
+  width: 100%;
+  height: 500px;
+  background-color: aliceblue;
+}
+
+</style>
+
+<!-- Resources -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+showTDS();
+function showPH (){
+   var chart = am4core.create("chartTDS", am4charts.XYChart);
+chart.paddingRight = 20;
+chart.exporting.menu = new am4core.ExportMenu();
+chart.data = dev;
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.baseInterval = {
+  "timeUnit": "minute",
+  "count": 1
+};
+
+
+dateAxis.tooltipDateFormat = "d/MM/YYYY, HH:mm:ss";
+dateAxis.dateFormatter.dateFormat = "d/MM/YYYY, HH:mm:ss ";
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.title.text = "Niveles de PH";
+
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.dateX = "date";
+series.dataFields.valueY = "PH";
+series.tooltipText = "PH: [bold]{valueY}[/]";
+series.fillOpacity = 0.3;
+
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineY.opacity = 0;
+chart.scrollbarX = new am4charts.XYChartScrollbar();
+chart.scrollbarX.series.push(series);
+
+
+dateAxis.start = 0.8;
+dateAxis.keepSelection = true;
+
+}
+
+  
+function showTB (){
+   var chart = am4core.create("chartTDS", am4charts.XYChart);
+chart.paddingRight = 20;
+chart.exporting.menu = new am4core.ExportMenu();
+chart.data = dev;
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.baseInterval = {
+  "timeUnit": "minute",
+  "count": 1
+};
+
+
+dateAxis.tooltipDateFormat = "d/MM/YYYY, HH:mm:ss";
+dateAxis.dateFormatter.dateFormat = "d/MM/YYYY, HH:mm:ss ";
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.title.text = "Niveles de Turbidez";
+
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.dateX = "date";
+series.dataFields.valueY = "TB";
+series.tooltipText = "TB: [bold]{valueY}[/]";
+series.fillOpacity = 0.3;
+
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineY.opacity = 0;
+chart.scrollbarX = new am4charts.XYChartScrollbar();
+chart.scrollbarX.series.push(series);
+
+
+dateAxis.start = 0.8;
+dateAxis.keepSelection = true;
+
+}
+
+
+
+
+function showEC (){
+   var chart = am4core.create("chartTDS", am4charts.XYChart);
+chart.paddingRight = 20;
+chart.exporting.menu = new am4core.ExportMenu();
+chart.data = dev;
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.baseInterval = {
+  "timeUnit": "minute",
+  "count": 1
+};
+
+
+dateAxis.tooltipDateFormat = "d/MM/YYYY, HH:mm:ss";
+dateAxis.dateFormatter.dateFormat = "d/MM/YYYY, HH:mm:ss ";
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.title.text = "Niveles de Conductividad eléctrica";
+
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.dateX = "date";
+series.dataFields.valueY = "EC";
+series.tooltipText = "EC: [bold]{valueY}[/]";
+series.fillOpacity = 0.3;
+
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineY.opacity = 0;
+chart.scrollbarX = new am4charts.XYChartScrollbar();
+chart.scrollbarX.series.push(series);
+
+
+dateAxis.start = 0.8;
+dateAxis.keepSelection = true;
+
+}
+
+
+  function showTDS () {
+    var chart = am4core.create("chartTDS", am4charts.XYChart);
+chart.paddingRight = 20;
+chart.exporting.menu = new am4core.ExportMenu();
+chart.data = dev;
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.baseInterval = {
+  "timeUnit": "minute",
+  "count": 1
+};
+
+
+dateAxis.tooltipDateFormat = "d/MM/YYYY, HH:mm:ss";
+dateAxis.dateFormatter.dateFormat = "d/MM/YYYY, HH:mm:ss ";
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.title.text = "Niveles de TDS";
+
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.dateX = "date";
+series.dataFields.valueY = "TDS";
+series.tooltipText = "TDS: [bold]{valueY}[/]";
+series.fillOpacity = 0.3;
+
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineY.opacity = 0;
+chart.scrollbarX = new am4charts.XYChartScrollbar();
+chart.scrollbarX.series.push(series);
+
+
+dateAxis.start = 0.8;
+dateAxis.keepSelection = true;
+
+
+  }
+/// TDS 
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart
+
+
+}); // end am4core.ready()
+/////////////////////////////////// PH
+
+</script>
+
+<!-- HTML -->

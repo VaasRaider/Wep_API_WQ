@@ -1,0 +1,67 @@
+<div class="animate__animated animate__fadeIn row">
+<div class="col-md-10 mx-auto">
+
+    <div class="card">
+        <div class="card-header">
+             <h3 style="text-align:center;">Bienvenido {{user.name}}</h3>
+             </div>
+               <div class="card-body">
+                    <div class="container-fluid" id="map-template"></div>
+
+                    <script src="/js/map_select_main.js"></script>
+                    <script>
+                        //tam = {{notes}}.length; 
+                        console.log('Tmaño notes');
+                         
+                       // console.log(tam);
+                    </script>                 
+                   {{#each notes}}
+
+                        <script>
+                            
+                            
+                             L.marker( [{{description}}], {icon: parkIcon} ).addTo(map)
+                             .bindPopup('{{title}}')
+                            .on("click", function(e){onClick(e, "{{_id}}", "{{title}}");});
+                                   
+                        </script>
+
+                     {{/each}}
+                      
+              
+                    <hr class="my-4">
+                   <form action="/reservations/new-reservation" method="POST">
+                        
+                <div class="form-group">
+                    <input type="datetime-local" name="input_date" class="form-control"  autofocus>                     
+                </div>
+                <div class="form-group">
+                    <input   type="text" id ="park_name" name="park_name" class="form-control" placeholder="Selecciona un estacionamiento en el mapa"></input>
+                </div>
+                <input type="hidden" id ="park_id" name="park_id">
+                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                     <option selected>Selecciona un vehículo...</option>
+                     
+                     
+                      {{#each vehicles}}
+                      <option value={{placas}}>{{description}}</option>
+                        {{/each}}
+                </select>
+                <hr class="my-2">
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Guardar
+                    </button>
+                    <hr class="my-1">
+                    <a href="/reservations" class="btn btn-secondary btn-block" role="button" aria-pressed="true">Cancelar</a>
+                    
+                </div>
+            </form>
+        
+    
+        </div>
+ 
+</div>
+</div>
+ </div>  
+

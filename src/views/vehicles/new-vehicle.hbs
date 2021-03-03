@@ -1,0 +1,35 @@
+<div class="animate__animated animate__fadeIn row">
+<div class="col-md-10 mx-auto">
+
+    <div class="card">
+        <div class="card-header">
+             <h3 style="text-align:center;">Bienvenido {{user.name}}</h3>
+             </div>
+               <div class="card-body">
+                      
+                    <hr class="my-4">
+                   <form action="/vehicles/new-vehicle" method="POST">
+                        
+                <div class="form-group">
+                    <input type="text" name="placas" class="form-control" placeholder="Placas" autofocus>                     
+                </div>
+                <div class="form-group">
+                    <textarea id ="new_coor" name="description" class="form-control" placeholder="Descripción del vehículo"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">
+                        Guardar
+                    </button>
+                    <hr class="my-1">
+                    <a href="/vehicles" class="btn btn-secondary btn-block" role="button" aria-pressed="true">Cancelar</a>
+                    
+                </div>
+            </form>
+        
+    
+        </div>
+ 
+</div>
+</div>
+ </div>  
+

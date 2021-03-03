@@ -1,0 +1,55 @@
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<div class="jumbotron mt-.5">
+    <h2 class="display-4">
+        Monitoreo de calidad del agua
+    </h2>
+    <p class="lead">Estaciones de monitoreo activas</p>
+  <div class="row " >
+    <span id='close'>x</span>
+      <div class="jumbotron container col-3" id="chartdiv" >
+         
+      </div>
+      <div class="jumbotron col-md" id="map-template"></div>
+      
+  </div>
+    <div class="container-fluid" >
+        
+    </div>
+    <p style="text-align:center; font-weight: bold;"class="lead">{{title}}<br></p>
+     <FONT SIZE=3 style="font-weight: bold;">Estación: </font>
+      <FONT SIZE=3 > {{topic}}<br></font>
+     <FONT SIZE=3 style="font-weight: bold;">Coordenadas: </font>
+     <FONT SIZE=3 > {{description}}<br></font>
+      
+     <script src="/js/map_main.js"></script>
+     {{#each notes}}
+
+      <script>
+        var  device = [];
+        //'Lugar: {{title}},<br> Topic: {{topic}},<br> Coordenadas: {{description}}'
+        var pop_up = '<p style="text-align:center; font-weight: bold;"class="lead">{{title}}<br></p>'+
+                     '<FONT SIZE=3 style="font-weight: bold;">Estación: </font>' +
+                     '<FONT SIZE=3 > {{topic}}<br></font>' +
+                     '<FONT SIZE=3 style="font-weight: bold;">Coordenadas: </font>'+
+                     '<FONT SIZE=3 > {{description}}<br></font>';
+          
+        L.marker( [{{description}}], {icon: parkIcon} ).bindPopup(pop_up).addTo(cities).on('click', onClick);  
+                  
+      </script>
+
+                     {{/each}}
+                     
+    
+
+
+    <hr class="my-4">
+    <h4 id = "mqtt_test"></h4>
+    <p>Inicia sesión para más</p>
+    <a href="www.google.com" class="btn btn-primary btn-lg">WEB</a>
+    
+</div>
+    
+</div>
